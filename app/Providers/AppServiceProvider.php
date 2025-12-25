@@ -31,14 +31,5 @@ class AppServiceProvider extends ServiceProvider
                 $request->user()?->id ?: $request->ip()
             );
         });
-
-        Gate::define('update-event', function (User $user, Event $event) {
-            return $user->id === $event->user_id;
-        });
-
-        Gate::define('delete-event', function ($user, Event $event, Attendee $attendee) {
-            return $user->id === $event->user_id ||
-                $user->id === $attendee->user_id;
-        });
     }
 }
